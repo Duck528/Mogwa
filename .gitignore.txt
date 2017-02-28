@@ -285,4 +285,3 @@ __pycache__/
 
 Bin/
 Setup
-.vs/
