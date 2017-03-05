@@ -1,2 +1,5 @@
 App.xbf
+Controls\HomeControl.xbf
+Controls\SearchControl.xbf
+Controls\Tile.xbf
 Views\MainView.xbf

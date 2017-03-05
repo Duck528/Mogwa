@@ -17,7 +17,7 @@ namespace Mogwa.ViewModels
         /// false: 접힌 상태
         /// true: 펼친 상태
         /// </summary>
-        private bool isNavMenuOpened = true;
+        private bool isNavMenuOpened = false;
         public bool IsNavMenuOpened
         {
             get { return this.isNavMenuOpened; }
@@ -49,6 +49,60 @@ namespace Mogwa.ViewModels
                     });
                 }
                 return this.toggleNavMenu;
+            }
+        }
+        #endregion
+
+        #region TopStatus
+        /// <summary>
+        /// 뒤로가기 버튼 활성화 여부를 나타낸다
+        /// </summary>
+        private bool enableBack = false;
+        public bool EnableBack
+        {
+            get { return this.enableBack; }
+            set
+            {
+                if (this.enableBack != value)
+                {
+                    this.enableBack = value;
+                    this.RaisePropertyChanged("EnableBack");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 검색 메뉴의 펼친 상태를 알려준다
+        /// true: 펼친 상태
+        /// false: 접힌 상태
+        /// </summary>
+        private bool isSearchOpened = false;
+        public bool IsSearchOpened
+        {
+            get { return this.isSearchOpened; }
+            set
+            {
+                if (this.isSearchOpened != value)
+                {
+                    this.isSearchOpened = value;
+                    this.RaisePropertyChanged("IsSearchOpened");
+                }
+            }
+        }
+
+        private ICommand toggleSearch = null;
+        public ICommand ToggleSearch
+        {
+            get
+            {
+                if (this.toggleSearch == null)
+                {
+                    this.toggleSearch = new RelayCommand(() =>
+                    {
+                        this.IsSearchOpened = !this.IsSearchOpened;
+                    });
+                }
+                return this.toggleSearch;
             }
         }
         #endregion

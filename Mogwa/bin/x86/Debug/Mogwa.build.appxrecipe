@@ -415,6 +415,9 @@
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Thekan\workspace\cs\Mogwa\Mogwa\Resources\youtube.png">
+      <PackagePath>Resources\youtube.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Thekan\workspace\cs\Mogwa\Mogwa\Resources\video.png">
       <PackagePath>Resources\video.png</PackagePath>
     </AppxPackagedFile>

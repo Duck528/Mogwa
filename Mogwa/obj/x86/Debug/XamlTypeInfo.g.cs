@@ -132,21 +132,29 @@ namespace Mogwa.Mogwa_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[6];
-            _typeNameTable[0] = "Mogwa.Views.MainView";
-            _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[3] = "Mogwa.ViewModels.MainViewModel";
-            _typeNameTable[4] = "GalaSoft.MvvmLight.ObservableObject";
-            _typeNameTable[5] = "Object";
+            _typeNameTable = new string[10];
+            _typeNameTable[0] = "Mogwa.Controls.HomeControl";
+            _typeNameTable[1] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[2] = "Mogwa.Controls.SearchControl";
+            _typeNameTable[3] = "Mogwa.Controls.Tile";
+            _typeNameTable[4] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[5] = "Mogwa.Converters.BoolToVisibilityConverter";
+            _typeNameTable[6] = "Object";
+            _typeNameTable[7] = "Mogwa.Views.MainView";
+            _typeNameTable[8] = "Mogwa.ViewModels.MainViewModel";
+            _typeNameTable[9] = "GalaSoft.MvvmLight.ObservableObject";
 
-            _typeTable = new global::System.Type[6];
-            _typeTable[0] = typeof(global::Mogwa.Views.MainView);
-            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[3] = typeof(global::Mogwa.ViewModels.MainViewModel);
-            _typeTable[4] = typeof(global::GalaSoft.MvvmLight.ObservableObject);
-            _typeTable[5] = typeof(global::System.Object);
+            _typeTable = new global::System.Type[10];
+            _typeTable[0] = typeof(global::Mogwa.Controls.HomeControl);
+            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[2] = typeof(global::Mogwa.Controls.SearchControl);
+            _typeTable[3] = typeof(global::Mogwa.Controls.Tile);
+            _typeTable[4] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[5] = typeof(global::Mogwa.Converters.BoolToVisibilityConverter);
+            _typeTable[6] = typeof(global::System.Object);
+            _typeTable[7] = typeof(global::Mogwa.Views.MainView);
+            _typeTable[8] = typeof(global::Mogwa.ViewModels.MainViewModel);
+            _typeTable[9] = typeof(global::GalaSoft.MvvmLight.ObservableObject);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -181,9 +189,13 @@ namespace Mogwa.Mogwa_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_MainView() { return new global::Mogwa.Views.MainView(); }
-        private object Activate_3_MainViewModel() { return new global::Mogwa.ViewModels.MainViewModel(); }
-        private object Activate_4_ObservableObject() { return new global::GalaSoft.MvvmLight.ObservableObject(); }
+        private object Activate_0_HomeControl() { return new global::Mogwa.Controls.HomeControl(); }
+        private object Activate_2_SearchControl() { return new global::Mogwa.Controls.SearchControl(); }
+        private object Activate_3_Tile() { return new global::Mogwa.Controls.Tile(); }
+        private object Activate_5_BoolToVisibilityConverter() { return new global::Mogwa.Converters.BoolToVisibilityConverter(); }
+        private object Activate_7_MainView() { return new global::Mogwa.Views.MainView(); }
+        private object Activate_8_MainViewModel() { return new global::Mogwa.ViewModels.MainViewModel(); }
+        private object Activate_9_ObservableObject() { return new global::GalaSoft.MvvmLight.ObservableObject(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -195,37 +207,65 @@ namespace Mogwa.Mogwa_XamlTypeInfo
             switch (typeIndex)
             {
 
-            case 0:   //  Mogwa.Views.MainView
+            case 0:   //  Mogwa.Controls.HomeControl
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_0_HomeControl;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 1:   //  Windows.UI.Xaml.Controls.UserControl
+                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 2:   //  Mogwa.Controls.SearchControl
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_2_SearchControl;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 3:   //  Mogwa.Controls.Tile
                 userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_0_MainView;
+                userType.Activator = Activate_3_Tile;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 4:   //  Windows.UI.Xaml.Controls.Page
+                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 5:   //  Mogwa.Converters.BoolToVisibilityConverter
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_5_BoolToVisibilityConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 6:   //  Object
+                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 7:   //  Mogwa.Views.MainView
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_7_MainView;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 1:   //  Windows.UI.Xaml.Controls.Page
-                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 2:   //  Windows.UI.Xaml.Controls.UserControl
-                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 3:   //  Mogwa.ViewModels.MainViewModel
+            case 8:   //  Mogwa.ViewModels.MainViewModel
                 userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("GalaSoft.MvvmLight.ObservableObject"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 4:   //  GalaSoft.MvvmLight.ObservableObject
+            case 9:   //  GalaSoft.MvvmLight.ObservableObject
                 userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_4_ObservableObject;
+                userType.Activator = Activate_9_ObservableObject;
                 xamlType = userType;
-                break;
-
-            case 5:   //  Object
-                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
             return xamlType;

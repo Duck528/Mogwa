@@ -4,19 +4,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:c="using:Mogwa.Converters"
+    xmlns:t="using:Mogwa.Controls"
     mc:Ignorable="d">
     <Page.Resources>
         <!-- 색상 정의 -->
         <SolidColorBrush x:Key="navColor">#282828</SolidColorBrush>
         <SolidColorBrush x:Key="stateColor">#B93C3C</SolidColorBrush>
         <SolidColorBrush x:Key="bgColor">#3c3c3c</SolidColorBrush>
-        
+        <SolidColorBrush x:Key="searchColor">#282828</SolidColorBrush>
         <!-- 스타일 정의 -->
+        
+        <!-- 컨버터 정의 -->
+        <c:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
     </Page.Resources>
 
     <Grid Background="{StaticResource bgColor}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="45" MaxWidth="130"/>
+            <ColumnDefinition MinWidth="45" MaxWidth="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -28,34 +33,47 @@
         <!-- 
         상태바로서 현재 보여지는 페이지의 종류와 뒤로가기 버튼, 햄버그 버튼이 존재한다
         -->
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal"
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="45"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
                     Background="{StaticResource stateColor}">
-            <StackPanel.Children>
-                <!--
-                햄버그 버튼으로 클릭하면 아이콘 우측에 설명이 보여진다
-                -->
-                <Button Width="45" Height="30" Background="Transparent"
+                <StackPanel.Children>
+                    <!--
+                    햄버그 버튼으로 클릭하면 아이콘 우측에 설명이 보여진다
+                    -->
+                    <Button Width="45" Height="30" Background="Transparent"
                         Command="{Binding ToggleNavMenu}">
-                    <Button.Content>
-                        <Image Source="ms-appx:///Resources/hamburge.png" HorizontalAlignment="Center"/>
-                    </Button.Content>
-                </Button>
-                <!-- 현재 메인에 보여지는 페이지의 종류 -->
-                <TextBlock Text="Home" Margin="35 0 0 0" VerticalAlignment="Center"/>
-                <!-- 뒤로가기 버튼 -->
-                <Button Width="45" Height="28" Background="Transparent">
-                    <Button.Content>
-                        <Image Source="ms-appx:///Resources/back.png" HorizontalAlignment="Center"/>
-                    </Button.Content>
-                </Button>
-            </StackPanel.Children>
-        </StackPanel>
-        
+                        <Button.Content>
+                            <Image Source="ms-appx:///Resources/hamburge.png" HorizontalAlignment="Center"/>
+                        </Button.Content>
+                    </Button>
+                    <!-- 현재 메인에 보여지는 페이지의 종류 -->
+                    <TextBlock Text="Home" Margin="35 0 0 0" VerticalAlignment="Center"/>
+                    <!-- 뒤로가기 버튼 -->
+                    <Button Width="45" Height="28" Background="Transparent"
+                        Visibility="{Binding EnableBack, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <Button.Content>
+                            <Image Source="ms-appx:///Resources/back.png" HorizontalAlignment="Center"/>
+                        </Button.Content>
+                    </Button>
+                </StackPanel.Children>
+            </StackPanel>
+            <!-- 검색 버튼 -->
+            <Button Grid.Column="1" Command="{Binding ToggleSearch}" Width="45" Height="40" Background="Transparent">
+                <Button.Content>
+                    <Image Source="ms-appx:///Resources/search.png"/>
+                </Button.Content>
+            </Button>
+        </Grid>
+
         <!-- 
-        네비게이터로 상단부터 차례로 홈, 검색, 음악, 비디오가 오며 하단부터는 설정, 회원정보가 온다
+        네비게이터로 상단부터 차례로 홈, 내 음악, 내 비디오가 오며 하단부터는 설정, 회원정보가 온다
         -->
         <SplitView Grid.Row="1" Grid.Column="0" DisplayMode="CompactOverlay"
-                   IsPaneOpen="{Binding IsNavMenuOpened}" CompactPaneLength="45" OpenPaneLength="130">
+                   IsPaneOpen="{Binding IsNavMenuOpened}" CompactPaneLength="45" OpenPaneLength="150">
             <SplitView.Pane>
                 <StackPanel Background="{StaticResource navColor}">
                     <!-- 홈 버튼 -->
@@ -65,40 +83,63 @@
                                 <Image Source="ms-appx:///Resources/home.png"/>
                             </Button.Content>
                         </Button>
-                        <TextBlock Text="홈" Margin="10 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="홈" Margin="10 0 0 0" 
+                                   Foreground="WhiteSmoke"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </StackPanel>
-                    <!-- 검색 버튼 -->
-                    <StackPanel Orientation="Horizontal">
-                        <Button Width="45" Height="40" Background="Transparent">
-                            <Button.Content>
-                                <Image Source="ms-appx:///Resources/search.png"/>
-                            </Button.Content>
-                        </Button>
-                        <TextBlock Text="검색" Margin="10 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <!-- 음악 버튼 -->
+                    <!-- 내 음악 버튼 -->
                     <StackPanel Orientation="Horizontal">
                         <Button Width="45" Height="40" Background="Transparent">
                             <Button.Content>
                                 <Image Source="ms-appx:///Resources/music.png"/>
                             </Button.Content>
                         </Button>
-                        <TextBlock Text="음악" Margin="10 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="내 음악" Margin="10 0 0 0"
+                                   Foreground="WhiteSmoke"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </StackPanel>
-                    <!-- 비디오 버튼 -->
+                    <!-- 내 비디오 버튼 -->
                     <StackPanel Orientation="Horizontal">
                         <Button Width="45" Height="40" Background="Transparent">
                             <Button.Content>
                                 <Image Source="ms-appx:///Resources/video.png"/>
                             </Button.Content>
                         </Button>
-                        <TextBlock Text="음악"  Margin="10 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="내 비디오"  Margin="10 0 0 0"
+                                   Foreground="WhiteSmoke"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
             </SplitView.Pane>
         </SplitView>
-        <!-- 
-        
-        -->
+        <!-- 컨텐츠 패널 -->
+        <VariableSizedWrapGrid Grid.Row="1" Grid.Column="1"/>
+        <!-- 검색 메뉴 -->
+        <SplitView Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
+                   DisplayMode="CompactOverlay" 
+                   FlowDirection="RightToLeft"
+                   Background="Transparent"
+                   IsPaneOpen="{Binding IsSearchOpened}" CompactPaneLength="0" OpenPaneLength="240">
+            <SplitView.Pane>
+                <StackPanel Background="{StaticResource searchColor}">
+                    <TextBlock Text="검색" HorizontalAlignment="Right" FontSize="16" Foreground="WhiteSmoke" Margin="0 15 25 0"/>
+                    <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
+                        <TextBlock Text="유튜브" HorizontalAlignment="Left" FontSize="12" 
+                                   Foreground="WhiteSmoke" Margin="25 8 0 0"/>
+                    </StackPanel>
+                    <!-- 
+                    검색어 입력창에 내용이 아무것도 입력되어 있지 않다면, 
+                    과거 검색 내역을 아래에 보여주고,
+                    만약 텍스트가 입력이 되어 있다면 입력된 텍스트를 기반으로
+                    검색어 추천 내역 리스트를 보여준다 
+                    (검색어 추천 내역 리스트 추출 방법은 좀 더 조사해 보자)
+                    -->
+                    <TextBox Width="180" Background="WhiteSmoke" 
+                             VerticalContentAlignment="Center"
+                             HorizontalAlignment="Right" FontSize="12"
+                             Margin="0 8 25 0"/>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
     </Grid>
 </Page>

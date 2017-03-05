@@ -28,13 +28,13 @@
     <AppXManifest Include="D:\Thekan\workspace\cs\Mogwa\Mogwa\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-02-28T16:05:45.107</Modified>
+      <Modified>2017-03-05T06:26:44.305</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Thekan\workspace\cs\Mogwa\Mogwa\bin\x86\Debug\Mogwa.exe">
       <PackagePath>entrypoint\Mogwa.exe</PackagePath>
-      <Modified>2017-02-28T16:05:44.416</Modified>
+      <Modified>2017-03-05T06:26:43.548</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\thekan\.nuget\packages\CommonServiceLocator\1.3.0\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll">
       <PackagePath>Microsoft.Practices.ServiceLocation.dll</PackagePath>
@@ -554,6 +554,10 @@
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2017-02-27T18:14:11.706</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Thekan\workspace\cs\Mogwa\Mogwa\Resources\youtube.png">
+      <PackagePath>Resources\youtube.png</PackagePath>
+      <Modified>2017-03-01T04:47:50.413</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Thekan\workspace\cs\Mogwa\Mogwa\Resources\video.png">
       <PackagePath>Resources\video.png</PackagePath>
       <Modified>2017-02-28T14:18:30.061</Modified>
@@ -580,7 +584,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Thekan\workspace\cs\Mogwa\Mogwa\bin\x86\Debug\Mogwa.xr.xml">
       <PackagePath>Mogwa.xr.xml</PackagePath>
-      <Modified>2017-02-28T16:05:44.220</Modified>
+      <Modified>2017-03-05T06:26:43.322</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -589,11 +593,11 @@
     <AppxPackagedFile Include="D:\Thekan\workspace\cs\Mogwa\Mogwa\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-02-28T16:05:44.841</Modified>
+      <Modified>2017-03-05T06:26:44.062</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Thekan\workspace\cs\Mogwa\Mogwa\bin\x86\Debug\Core\Mogwa.exe">
       <PackagePath>Mogwa.exe</PackagePath>
-      <Modified>2017-02-28T16:05:45.103</Modified>
+      <Modified>2017-03-05T06:26:44.299</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
