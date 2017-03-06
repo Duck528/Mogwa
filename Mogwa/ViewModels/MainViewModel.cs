@@ -1,11 +1,15 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Mogwa.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Mogwa.ViewModels
 {
@@ -126,15 +130,94 @@ namespace Mogwa.ViewModels
             }
         }
 
-        private ICommand doSearch = null;
-        public ICommand DoSearch
+        /// <summary>
+        /// 유튜브를 통해 검색 작업을 수행한다
+        /// </summary>
+        private ICommand doYoutubeSearch = null;
+        public ICommand DoYoutubeSearch
         {
             get
             {
-                if (this.doSearch == null)
+                if (this.doYoutubeSearch == null)
                 {
-
+                    this.doYoutubeSearch = new RelayCommand(async () =>
+                    {
+                        var youtubeHelper = new YoutubeHelper();
+                        var results = await youtubeHelper.SearchByTitle(this.SearchKeyWord);
+                        this.YoutubeSearchResults = new ObservableCollection<YoutubeNode>(results);
+                        this.IsSearchResultVisible = true;
+                    });
                 }
+                return this.doYoutubeSearch;
+            }
+        }
+
+        /// <summary>
+        /// 유튜브 검색 결과 데이터
+        /// </summary>
+        private ObservableCollection<YoutubeNode> youtubeSearchResults = null;
+        public ObservableCollection<YoutubeNode> YoutubeSearchResults
+        {
+            get { return this.youtubeSearchResults; }
+            set
+            {
+                if (this.youtubeSearchResults != value)
+                {
+                    this.youtubeSearchResults = value;
+                    this.NumYoutubeSearchResults = this.YoutubeSearchResults.Count();
+                    this.RaisePropertyChanged("YoutubeSearchResults");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 유튜브 검색 결과 데이터의 수
+        /// </summary>
+        private int numYoutubeSearchResults = 0;
+        public int NumYoutubeSearchResults
+        {
+            get { return this.numYoutubeSearchResults; }
+            set
+            {
+                if (this.numYoutubeSearchResults != value)
+                {
+                    this.numYoutubeSearchResults = value;
+                    this.RaisePropertyChanged("NumYoutubeSearchResults");
+                }
+            }
+        }
+        #endregion
+
+        #region ContentsVisibilities
+        private bool isSearchResultVisible = false;
+        public bool IsSearchResultVisible
+        {
+            get { return this.isSearchOpened; }
+            set
+            {
+                if (this.isSearchResultVisible != value)
+                {
+                    this.isSearchResultVisible = value;
+                    this.RaisePropertyChanged("IsSearchResultVisible");
+                }
+            }
+        }
+        #endregion
+
+        #region Contents
+        private ICommand doOpenFlyoutMenu = null;
+        public ICommand DoOpenFlyoutMenu
+        {
+            get
+            {
+                if (this.doOpenFlyoutMenu == null)
+                {
+                    this.doOpenFlyoutMenu = new RelayCommand<object>((sender) =>
+                    {
+                        FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+                    });
+                }
+                return this.doOpenFlyoutMenu;
             }
         }
         #endregion

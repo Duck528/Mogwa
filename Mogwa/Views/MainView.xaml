@@ -20,10 +20,12 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource bgColor}">
+        <!--
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="45" MaxWidth="150"/>
+            <ColumnDefinition Width="45"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        -->
 
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="35" MaxHeight="35"/>
@@ -69,6 +71,10 @@
             </Button>
         </Grid>
 
+        <!-- 컨텐츠 패널 -->
+        <t:SearchResultControl Grid.Row="1" Margin="60 0 0 0"
+                               Visibility="{Binding IsSearchResultVisible, Converter={StaticResource BoolToVisibilityConverter}}"/>
+
         <!-- 
         네비게이터로 상단부터 차례로 홈, 내 음악, 내 비디오가 오며 하단부터는 설정, 회원정보가 온다
         -->
@@ -112,8 +118,7 @@
                 </StackPanel>
             </SplitView.Pane>
         </SplitView>
-        <!-- 컨텐츠 패널 -->
-        <VariableSizedWrapGrid Grid.Row="1" Grid.Column="1"/>
+        
         <!-- 검색 메뉴 -->
         <SplitView Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
                    DisplayMode="CompactOverlay" 
@@ -141,6 +146,7 @@
                                  HorizontalAlignment="Right" FontSize="12"
                                  Margin="25 8 0 0"/>
                         <Button Background="{StaticResource stateColor}"
+                                Command="{Binding DoYoutubeSearch}"
                                 Height="28" FontSize="12"
                                 Content="검색" Foreground="WhiteSmoke"
                                 Margin="3 8 0 0"/>

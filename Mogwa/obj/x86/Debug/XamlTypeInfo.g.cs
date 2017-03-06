@@ -132,29 +132,55 @@ namespace Mogwa.Mogwa_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[10];
+            _typeNameTable = new string[23];
             _typeNameTable[0] = "Mogwa.Controls.HomeControl";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[2] = "Mogwa.Controls.SearchControl";
-            _typeNameTable[3] = "Mogwa.Controls.Tile";
-            _typeNameTable[4] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[5] = "Mogwa.Converters.BoolToVisibilityConverter";
-            _typeNameTable[6] = "Object";
-            _typeNameTable[7] = "Mogwa.Views.MainView";
-            _typeNameTable[8] = "Mogwa.ViewModels.MainViewModel";
-            _typeNameTable[9] = "GalaSoft.MvvmLight.ObservableObject";
+            _typeNameTable[3] = "Microsoft.Xaml.Interactivity.Interaction";
+            _typeNameTable[4] = "Object";
+            _typeNameTable[5] = "Microsoft.Xaml.Interactivity.BehaviorCollection";
+            _typeNameTable[6] = "Windows.UI.Xaml.DependencyObjectCollection";
+            _typeNameTable[7] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[8] = "Microsoft.Xaml.Interactions.Core.EventTriggerBehavior";
+            _typeNameTable[9] = "Microsoft.Xaml.Interactivity.Trigger";
+            _typeNameTable[10] = "Microsoft.Xaml.Interactivity.Behavior";
+            _typeNameTable[11] = "Microsoft.Xaml.Interactivity.ActionCollection";
+            _typeNameTable[12] = "String";
+            _typeNameTable[13] = "Microsoft.Xaml.Interactions.Core.InvokeCommandAction";
+            _typeNameTable[14] = "System.Windows.Input.ICommand";
+            _typeNameTable[15] = "Windows.UI.Xaml.Data.IValueConverter";
+            _typeNameTable[16] = "Mogwa.Controls.SearchResultControl";
+            _typeNameTable[17] = "Mogwa.Controls.Tile";
+            _typeNameTable[18] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[19] = "Mogwa.Converters.BoolToVisibilityConverter";
+            _typeNameTable[20] = "Mogwa.Views.MainView";
+            _typeNameTable[21] = "Mogwa.ViewModels.MainViewModel";
+            _typeNameTable[22] = "GalaSoft.MvvmLight.ObservableObject";
 
-            _typeTable = new global::System.Type[10];
+            _typeTable = new global::System.Type[23];
             _typeTable[0] = typeof(global::Mogwa.Controls.HomeControl);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[2] = typeof(global::Mogwa.Controls.SearchControl);
-            _typeTable[3] = typeof(global::Mogwa.Controls.Tile);
-            _typeTable[4] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[5] = typeof(global::Mogwa.Converters.BoolToVisibilityConverter);
-            _typeTable[6] = typeof(global::System.Object);
-            _typeTable[7] = typeof(global::Mogwa.Views.MainView);
-            _typeTable[8] = typeof(global::Mogwa.ViewModels.MainViewModel);
-            _typeTable[9] = typeof(global::GalaSoft.MvvmLight.ObservableObject);
+            _typeTable[3] = typeof(global::Microsoft.Xaml.Interactivity.Interaction);
+            _typeTable[4] = typeof(global::System.Object);
+            _typeTable[5] = typeof(global::Microsoft.Xaml.Interactivity.BehaviorCollection);
+            _typeTable[6] = typeof(global::Windows.UI.Xaml.DependencyObjectCollection);
+            _typeTable[7] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[8] = typeof(global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior);
+            _typeTable[9] = typeof(global::Microsoft.Xaml.Interactivity.Trigger);
+            _typeTable[10] = typeof(global::Microsoft.Xaml.Interactivity.Behavior);
+            _typeTable[11] = typeof(global::Microsoft.Xaml.Interactivity.ActionCollection);
+            _typeTable[12] = typeof(global::System.String);
+            _typeTable[13] = typeof(global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction);
+            _typeTable[14] = typeof(global::System.Windows.Input.ICommand);
+            _typeTable[15] = typeof(global::Windows.UI.Xaml.Data.IValueConverter);
+            _typeTable[16] = typeof(global::Mogwa.Controls.SearchResultControl);
+            _typeTable[17] = typeof(global::Mogwa.Controls.Tile);
+            _typeTable[18] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[19] = typeof(global::Mogwa.Converters.BoolToVisibilityConverter);
+            _typeTable[20] = typeof(global::Mogwa.Views.MainView);
+            _typeTable[21] = typeof(global::Mogwa.ViewModels.MainViewModel);
+            _typeTable[22] = typeof(global::GalaSoft.MvvmLight.ObservableObject);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -191,11 +217,28 @@ namespace Mogwa.Mogwa_XamlTypeInfo
 
         private object Activate_0_HomeControl() { return new global::Mogwa.Controls.HomeControl(); }
         private object Activate_2_SearchControl() { return new global::Mogwa.Controls.SearchControl(); }
-        private object Activate_3_Tile() { return new global::Mogwa.Controls.Tile(); }
-        private object Activate_5_BoolToVisibilityConverter() { return new global::Mogwa.Converters.BoolToVisibilityConverter(); }
-        private object Activate_7_MainView() { return new global::Mogwa.Views.MainView(); }
-        private object Activate_8_MainViewModel() { return new global::Mogwa.ViewModels.MainViewModel(); }
-        private object Activate_9_ObservableObject() { return new global::GalaSoft.MvvmLight.ObservableObject(); }
+        private object Activate_5_BehaviorCollection() { return new global::Microsoft.Xaml.Interactivity.BehaviorCollection(); }
+        private object Activate_8_EventTriggerBehavior() { return new global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior(); }
+        private object Activate_11_ActionCollection() { return new global::Microsoft.Xaml.Interactivity.ActionCollection(); }
+        private object Activate_13_InvokeCommandAction() { return new global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction(); }
+        private object Activate_16_SearchResultControl() { return new global::Mogwa.Controls.SearchResultControl(); }
+        private object Activate_17_Tile() { return new global::Mogwa.Controls.Tile(); }
+        private object Activate_19_BoolToVisibilityConverter() { return new global::Mogwa.Converters.BoolToVisibilityConverter(); }
+        private object Activate_20_MainView() { return new global::Mogwa.Views.MainView(); }
+        private object Activate_21_MainViewModel() { return new global::Mogwa.ViewModels.MainViewModel(); }
+        private object Activate_22_ObservableObject() { return new global::GalaSoft.MvvmLight.ObservableObject(); }
+        private void VectorAdd_5_BehaviorCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Windows.UI.Xaml.DependencyObject>)instance;
+            var newItem = (global::Windows.UI.Xaml.DependencyObject)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_11_ActionCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::Windows.UI.Xaml.DependencyObject>)instance;
+            var newItem = (global::Windows.UI.Xaml.DependencyObject)item;
+            collection.Add(newItem);
+        }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -225,46 +268,128 @@ namespace Mogwa.Mogwa_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 3:   //  Mogwa.Controls.Tile
-                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_3_Tile;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 4:   //  Windows.UI.Xaml.Controls.Page
-                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 5:   //  Mogwa.Converters.BoolToVisibilityConverter
+            case 3:   //  Microsoft.Xaml.Interactivity.Interaction
                 userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_5_BoolToVisibilityConverter;
+                userType.AddMemberName("Behaviors");
+                xamlType = userType;
+                break;
+
+            case 4:   //  Object
+                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 5:   //  Microsoft.Xaml.Interactivity.BehaviorCollection
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObjectCollection"));
+                userType.CollectionAdd = VectorAdd_5_BehaviorCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 6:   //  Windows.UI.Xaml.DependencyObjectCollection
+                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 7:   //  Windows.UI.Xaml.DependencyObject
+                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 8:   //  Microsoft.Xaml.Interactions.Core.EventTriggerBehavior
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.Xaml.Interactivity.Trigger"));
+                userType.Activator = Activate_8_EventTriggerBehavior;
+                userType.SetContentPropertyName("Microsoft.Xaml.Interactivity.Trigger.Actions");
+                userType.AddMemberName("EventName");
+                userType.AddMemberName("SourceObject");
+                xamlType = userType;
+                break;
+
+            case 9:   //  Microsoft.Xaml.Interactivity.Trigger
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.Xaml.Interactivity.Behavior"));
+                userType.SetContentPropertyName("Microsoft.Xaml.Interactivity.Trigger.Actions");
+                userType.AddMemberName("Actions");
+                xamlType = userType;
+                break;
+
+            case 10:   //  Microsoft.Xaml.Interactivity.Behavior
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.AddMemberName("AssociatedObject");
+                xamlType = userType;
+                break;
+
+            case 11:   //  Microsoft.Xaml.Interactivity.ActionCollection
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObjectCollection"));
+                userType.CollectionAdd = VectorAdd_11_ActionCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 12:   //  String
+                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 13:   //  Microsoft.Xaml.Interactions.Core.InvokeCommandAction
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
+                userType.Activator = Activate_13_InvokeCommandAction;
+                userType.AddMemberName("Command");
+                userType.AddMemberName("CommandParameter");
+                userType.AddMemberName("InputConverter");
+                userType.AddMemberName("InputConverterParameter");
+                userType.AddMemberName("InputConverterLanguage");
+                xamlType = userType;
+                break;
+
+            case 14:   //  System.Windows.Input.ICommand
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 15:   //  Windows.UI.Xaml.Data.IValueConverter
+                xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 16:   //  Mogwa.Controls.SearchResultControl
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_16_SearchResultControl;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 6:   //  Object
+            case 17:   //  Mogwa.Controls.Tile
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_17_Tile;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 18:   //  Windows.UI.Xaml.Controls.Page
                 xamlType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 7:   //  Mogwa.Views.MainView
+            case 19:   //  Mogwa.Converters.BoolToVisibilityConverter
+                userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_19_BoolToVisibilityConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 20:   //  Mogwa.Views.MainView
                 userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_7_MainView;
+                userType.Activator = Activate_20_MainView;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 8:   //  Mogwa.ViewModels.MainViewModel
+            case 21:   //  Mogwa.ViewModels.MainViewModel
                 userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("GalaSoft.MvvmLight.ObservableObject"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 9:   //  GalaSoft.MvvmLight.ObservableObject
+            case 22:   //  GalaSoft.MvvmLight.ObservableObject
                 userType = new global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_9_ObservableObject;
+                userType.Activator = Activate_22_ObservableObject;
                 xamlType = userType;
                 break;
             }
@@ -272,7 +397,95 @@ namespace Mogwa.Mogwa_XamlTypeInfo
         }
 
 
-        private object get_0_MainView_ViewModel(object instance)
+        private object get_0_Interaction_Behaviors(object instance)
+        {
+            return global::Microsoft.Xaml.Interactivity.Interaction.GetBehaviors((global::Windows.UI.Xaml.DependencyObject)instance);
+        }
+        private void set_0_Interaction_Behaviors(object instance, object Value)
+        {
+            global::Microsoft.Xaml.Interactivity.Interaction.SetBehaviors((global::Windows.UI.Xaml.DependencyObject)instance, (global::Microsoft.Xaml.Interactivity.BehaviorCollection)Value);
+        }
+        private object get_1_Trigger_Actions(object instance)
+        {
+            var that = (global::Microsoft.Xaml.Interactivity.Trigger)instance;
+            return that.Actions;
+        }
+        private object get_2_EventTriggerBehavior_EventName(object instance)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior)instance;
+            return that.EventName;
+        }
+        private void set_2_EventTriggerBehavior_EventName(object instance, object Value)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior)instance;
+            that.EventName = (global::System.String)Value;
+        }
+        private object get_3_EventTriggerBehavior_SourceObject(object instance)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior)instance;
+            return that.SourceObject;
+        }
+        private void set_3_EventTriggerBehavior_SourceObject(object instance, object Value)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.EventTriggerBehavior)instance;
+            that.SourceObject = (global::System.Object)Value;
+        }
+        private object get_4_Behavior_AssociatedObject(object instance)
+        {
+            var that = (global::Microsoft.Xaml.Interactivity.Behavior)instance;
+            return that.AssociatedObject;
+        }
+        private object get_5_InvokeCommandAction_Command(object instance)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            return that.Command;
+        }
+        private void set_5_InvokeCommandAction_Command(object instance, object Value)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            that.Command = (global::System.Windows.Input.ICommand)Value;
+        }
+        private object get_6_InvokeCommandAction_CommandParameter(object instance)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            return that.CommandParameter;
+        }
+        private void set_6_InvokeCommandAction_CommandParameter(object instance, object Value)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            that.CommandParameter = (global::System.Object)Value;
+        }
+        private object get_7_InvokeCommandAction_InputConverter(object instance)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            return that.InputConverter;
+        }
+        private void set_7_InvokeCommandAction_InputConverter(object instance, object Value)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            that.InputConverter = (global::Windows.UI.Xaml.Data.IValueConverter)Value;
+        }
+        private object get_8_InvokeCommandAction_InputConverterParameter(object instance)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            return that.InputConverterParameter;
+        }
+        private void set_8_InvokeCommandAction_InputConverterParameter(object instance, object Value)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            that.InputConverterParameter = (global::System.Object)Value;
+        }
+        private object get_9_InvokeCommandAction_InputConverterLanguage(object instance)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            return that.InputConverterLanguage;
+        }
+        private void set_9_InvokeCommandAction_InputConverterLanguage(object instance, object Value)
+        {
+            var that = (global::Microsoft.Xaml.Interactions.Core.InvokeCommandAction)instance;
+            that.InputConverterLanguage = (global::System.String)Value;
+        }
+        private object get_10_MainView_ViewModel(object instance)
         {
             var that = (global::Mogwa.Views.MainView)instance;
             return that.ViewModel;
@@ -285,10 +498,80 @@ namespace Mogwa.Mogwa_XamlTypeInfo
 
             switch (longMemberName)
             {
+            case "Microsoft.Xaml.Interactivity.Interaction.Behaviors":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactivity.Interaction");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "Behaviors", "Microsoft.Xaml.Interactivity.BehaviorCollection");
+                xamlMember.SetTargetTypeName("Windows.UI.Xaml.DependencyObject");
+                xamlMember.SetIsAttachable();
+                xamlMember.Getter = get_0_Interaction_Behaviors;
+                xamlMember.Setter = set_0_Interaction_Behaviors;
+                break;
+            case "Microsoft.Xaml.Interactivity.Trigger.Actions":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactivity.Trigger");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "Actions", "Microsoft.Xaml.Interactivity.ActionCollection");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_1_Trigger_Actions;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Microsoft.Xaml.Interactions.Core.EventTriggerBehavior.EventName":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactions.Core.EventTriggerBehavior");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "EventName", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_2_EventTriggerBehavior_EventName;
+                xamlMember.Setter = set_2_EventTriggerBehavior_EventName;
+                break;
+            case "Microsoft.Xaml.Interactions.Core.EventTriggerBehavior.SourceObject":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactions.Core.EventTriggerBehavior");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "SourceObject", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_3_EventTriggerBehavior_SourceObject;
+                xamlMember.Setter = set_3_EventTriggerBehavior_SourceObject;
+                break;
+            case "Microsoft.Xaml.Interactivity.Behavior.AssociatedObject":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactivity.Behavior");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "AssociatedObject", "Windows.UI.Xaml.DependencyObject");
+                xamlMember.Getter = get_4_Behavior_AssociatedObject;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Microsoft.Xaml.Interactions.Core.InvokeCommandAction.Command":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactions.Core.InvokeCommandAction");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "Command", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_5_InvokeCommandAction_Command;
+                xamlMember.Setter = set_5_InvokeCommandAction_Command;
+                break;
+            case "Microsoft.Xaml.Interactions.Core.InvokeCommandAction.CommandParameter":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactions.Core.InvokeCommandAction");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "CommandParameter", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_6_InvokeCommandAction_CommandParameter;
+                xamlMember.Setter = set_6_InvokeCommandAction_CommandParameter;
+                break;
+            case "Microsoft.Xaml.Interactions.Core.InvokeCommandAction.InputConverter":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactions.Core.InvokeCommandAction");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "InputConverter", "Windows.UI.Xaml.Data.IValueConverter");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_7_InvokeCommandAction_InputConverter;
+                xamlMember.Setter = set_7_InvokeCommandAction_InputConverter;
+                break;
+            case "Microsoft.Xaml.Interactions.Core.InvokeCommandAction.InputConverterParameter":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactions.Core.InvokeCommandAction");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "InputConverterParameter", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_8_InvokeCommandAction_InputConverterParameter;
+                xamlMember.Setter = set_8_InvokeCommandAction_InputConverterParameter;
+                break;
+            case "Microsoft.Xaml.Interactions.Core.InvokeCommandAction.InputConverterLanguage":
+                userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.Xaml.Interactions.Core.InvokeCommandAction");
+                xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "InputConverterLanguage", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_9_InvokeCommandAction_InputConverterLanguage;
+                xamlMember.Setter = set_9_InvokeCommandAction_InputConverterLanguage;
+                break;
             case "Mogwa.Views.MainView.ViewModel":
                 userType = (global::Mogwa.Mogwa_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Mogwa.Views.MainView");
                 xamlMember = new global::Mogwa.Mogwa_XamlTypeInfo.XamlMember(this, "ViewModel", "Mogwa.ViewModels.MainViewModel");
-                xamlMember.Getter = get_0_MainView_ViewModel;
+                xamlMember.Getter = get_10_MainView_ViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             }

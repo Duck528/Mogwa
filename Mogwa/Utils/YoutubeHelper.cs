@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mogwa.Utils
 {
-    class YoutubeNode
+    public class YoutubeNode
     {
         public string Title { get; set; } = "";
         public string DefaultThumbnail { get; set; } = "";
@@ -35,13 +35,13 @@ namespace Mogwa.Utils
             }
         }
 
-        public async Task<IEnumerable<YoutubeNode>> SearchByTitle(string title, int limit=30)
+        public async Task<IEnumerable<YoutubeNode>> SearchByTitle(string title, int limit=50)
         {
             try
             {
                 var req = this.youtube.Search.List("snippet");
                 req.Q = title;
-                req.MaxResults = limit;
+                req.MaxResults = 50;
 
                 var result = await req.ExecuteAsync();
                 var nodes = new List<YoutubeNode>();
@@ -60,7 +60,7 @@ namespace Mogwa.Utils
                 }
                 return nodes;
             }
-            catch
+            catch(Exception e)
             {
                 return null;
             }
