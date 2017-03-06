@@ -90,6 +90,9 @@ namespace Mogwa.ViewModels
             }
         }
 
+        /// <summary>
+        /// 검색 메뉴를 토글링한다
+        /// </summary>
         private ICommand toggleSearch = null;
         public ICommand ToggleSearch
         {
@@ -103,6 +106,35 @@ namespace Mogwa.ViewModels
                     });
                 }
                 return this.toggleSearch;
+            }
+        }
+
+        /// <summary>
+        /// 검색 키워드
+        /// </summary>
+        private string searchKeyWord = "";
+        public string SearchKeyWord
+        {
+            get { return this.searchKeyWord; }
+            set
+            {
+                if (this.searchKeyWord.Equals(value) == false)
+                {
+                    this.searchKeyWord = value;
+                    this.RaisePropertyChanged("SearchKeyWord");
+                }
+            }
+        }
+
+        private ICommand doSearch = null;
+        public ICommand DoSearch
+        {
+            get
+            {
+                if (this.doSearch == null)
+                {
+
+                }
             }
         }
         #endregion

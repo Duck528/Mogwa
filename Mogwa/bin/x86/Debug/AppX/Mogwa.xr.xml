@@ -9,6 +9,7 @@
     <RootPropertyPathName Name="Title" />
     <RootPropertyPathName Name="imgPath" />
     <RootPropertyPathName Name="IsSearchOpened" />
+    <RootPropertyPathName Name="SearchKeyWord" />
     <RootPropertyPathName Name="IsNavMenuOpened" />
     <RootPropertyPathName Name="ToggleSearch" />
     <RootPropertyPathName Name="EnableBack" />
@@ -57,6 +58,7 @@
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Width" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Text" />
       <RootProperty Name="VerticalContentAlignment" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="FontSize" />
@@ -76,6 +78,8 @@
       <RootProperty Name="HorizontalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="UpdateSourceTrigger" />
+      <RootProperty Name="Mode" />
       <RootProperty Name="Converter" />
     </RootType>
     <RootType FullName="Mogwa.Controls.Tile" />
@@ -98,11 +102,17 @@
       <RootProperty Name="Background" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.VariableSizedWrapGrid" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
+      <RootProperty Name="HorizontalAlignment" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
-      <RootProperty Name="Width" />
-      <RootProperty Name="Height" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="FontSize" />
       <RootProperty Name="Content" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
       <RootProperty Name="Command" />
       <RootProperty Name="Visibility" />
     </RootType>
