@@ -1,4 +1,4 @@
-﻿
+
 # Created by https://www.gitignore.io/api/visualstudio
 
 ### VisualStudio ###
@@ -287,3 +287,4 @@ Bin/
 bin/
 obj/
 Setup
+.vs/Mogwa/v15/.suo
