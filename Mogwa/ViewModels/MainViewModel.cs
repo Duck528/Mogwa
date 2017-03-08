@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Mogwa.Models;
 using Mogwa.Utils;
 using System;
 using System.Collections.Generic;
@@ -144,7 +145,7 @@ namespace Mogwa.ViewModels
                     {
                         var youtubeHelper = new YoutubeHelper();
                         var results = await youtubeHelper.SearchByTitle(this.SearchKeyWord);
-                        this.YoutubeSearchResults = new ObservableCollection<YoutubeNode>(results);
+                        this.YoutubeSearchResults = new ObservableCollection<YoutubeNode>(results); 
                         this.IsSearchResultVisible = true;
                     });
                 }
@@ -205,19 +206,107 @@ namespace Mogwa.ViewModels
         #endregion
 
         #region Contents
-        private ICommand doOpenFlyoutMenu = null;
-        public ICommand DoOpenFlyoutMenu
+        private YoutubeNode rightTabppedNode = null;
+        public YoutubeNode RightTappedNode
+        {
+            get { return this.rightTabppedNode; }
+            set
+            {
+                if (this.rightTabppedNode != value)
+                {
+                    this.rightTabppedNode = value;
+                    this.RaisePropertyChanged("RightTappedNode");
+                }
+            }
+        }
+
+        private ICommand doRightTapdSearchedNode = null;
+        public ICommand DoRightTapdSearchedNode
         {
             get
             {
-                if (this.doOpenFlyoutMenu == null)
+                if (this.doRightTapdSearchedNode == null)
                 {
-                    this.doOpenFlyoutMenu = new RelayCommand<object>((sender) =>
+                    this.doRightTapdSearchedNode = new RelayCommand<object>((sender) =>
                     {
-                        FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+                        var uiElem = sender as FrameworkElement;
+                        if (uiElem != null)
+                        {
+                            // 선택된 노드가 있는 경우엔 Right Tap된 노드를 선택된 노드로 지정한다
+                            this.RightTappedNode = uiElem.DataContext as YoutubeNode;
+                            if (this.IsOpenBottomMenu == false)
+                            {
+                                this.IsOpenBottomMenu = true;
+                            }
+                        }
+                        else
+                        {
+                            // 선택된 노드가 없는 경우엔 BottomMenu를 토글링한다
+                            this.IsOpenBottomMenu = !this.IsOpenBottomMenu;
+                        }
+                        
                     });
                 }
-                return this.doOpenFlyoutMenu;
+                return this.doRightTapdSearchedNode;
+            }
+        }
+        #endregion
+
+        #region MenuCommands
+        private ObservableCollection<DownloadViewModel> downloadList = null;
+        public ObservableCollection<DownloadViewModel> DownloadList
+        {
+            get
+            {
+                if (this.downloadList == null)
+                {
+                    this.downloadList = new ObservableCollection<DownloadViewModel>();
+                }
+                return this.downloadList;
+            }
+            set { this.downloadList = value; }
+        }
+
+        private ICommand doVideoDownload = null;
+        public ICommand DoVideoDownload
+        {
+            get
+            {
+                if (this.doVideoDownload == null)
+                {
+                    this.doVideoDownload = new RelayCommand(() =>
+                    {
+                        if (this.RightTappedNode != null)
+                        {
+                            var downloadViewModel = new DownloadViewModel()
+                            {
+                                Title = this.RightTappedNode.Title,
+                                DownloadUrl = this.RightTappedNode.VideoUrl,
+                                ThumbnailUrl = this.RightTappedNode.DefaultThumbnail,
+                                Type = ContentsType.MP4
+                            };
+                            downloadViewModel.BeginDownload();
+                            this.DownloadList.Add(downloadViewModel);
+                        }
+                    });
+                }
+                return this.doVideoDownload;
+            }
+        }
+        #endregion
+
+        #region PopupMenus
+        private bool isOpenBottomMenu = false;
+        public bool IsOpenBottomMenu
+        {
+            get { return this.isOpenBottomMenu; }
+            set
+            {
+                if (this.isOpenBottomMenu != value)
+                {
+                    this.isOpenBottomMenu = value;
+                    this.RaisePropertyChanged("IsOpenBottomMenu");
+                }
             }
         }
         #endregion

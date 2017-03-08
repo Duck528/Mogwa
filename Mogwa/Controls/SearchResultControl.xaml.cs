@@ -23,10 +23,5 @@ namespace Mogwa.Controls
         {
             this.InitializeComponent();
         }
-
-        private void StackPanel_RightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
-        }
     }
 }

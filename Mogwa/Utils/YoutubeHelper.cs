@@ -2,9 +2,13 @@
 using Google.Apis.YouTube.v3;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Networking.BackgroundTransfer;
+using Windows.Storage;
+using YoutubeExtractor;
 
 namespace Mogwa.Utils
 {
@@ -17,6 +21,12 @@ namespace Mogwa.Utils
         public string VideoId { get; set; } = "";
         public string ChannelId { get; set; } = "";
         public string PublishedAt { get; set; } = "";
+        private string videoUrl = "";
+        public string VideoUrl
+        {
+            get { return this.videoUrl; }
+            set { this.videoUrl = value; }
+        }
 
     }
     class YoutubeHelper
@@ -55,13 +65,15 @@ namespace Mogwa.Utils
                         Title = resultItem.Snippet.Title,
                         DefaultThumbnail = resultItem.Snippet.Thumbnails.Default__.Url,
                         MediumThumbnail = resultItem.Snippet.Thumbnails.Medium.Url,
-                        LargeThumbnail = resultItem.Snippet.Thumbnails.High.Url
+                        LargeThumbnail = resultItem.Snippet.Thumbnails.High.Url,
+                        VideoUrl = "https://www.youtube.com/watch?v=" + resultItem.Id.VideoId
                     });
                 }
                 return nodes;
             }
             catch(Exception e)
             {
+                Console.WriteLine(e.Message);
                 return null;
             }
         }

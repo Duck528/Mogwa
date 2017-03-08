@@ -264,3 +264,4 @@ D:\Thekan\workspace\cs\Mogwa\Mogwa\bin\x86\Debug\Microsoft.Xaml.Interactions.dll
 D:\Thekan\workspace\cs\Mogwa\Mogwa\bin\x86\Debug\Microsoft.Xaml.Interactivity.dll
 D:\Thekan\workspace\cs\Mogwa\Mogwa\obj\x86\Debug\Microsoft.Xaml.Interactions.pri.xml
 D:\Thekan\workspace\cs\Mogwa\Mogwa\obj\x86\Debug\Microsoft.Xaml.Interactivity.pri.xml
+D:\Thekan\workspace\cs\Mogwa\Mogwa\obj\x86\Debug\Mogwa.csprojResolveAssemblyReference.cache

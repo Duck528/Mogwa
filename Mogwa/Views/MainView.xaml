@@ -13,20 +13,15 @@
         <SolidColorBrush x:Key="stateColor">#B93C3C</SolidColorBrush>
         <SolidColorBrush x:Key="bgColor">#3c3c3c</SolidColorBrush>
         <SolidColorBrush x:Key="searchColor">#282828</SolidColorBrush>
-        <!-- 스타일 정의 -->
-        
+
         <!-- 컨버터 정의 -->
         <c:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <x:Double x:Key="AppBarThemeCompactHeight">80</x:Double>
+
+        <!-- 스타일 정의 -->
     </Page.Resources>
 
     <Grid Background="{StaticResource bgColor}">
-        <!--
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="45"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        -->
-
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="35" MaxHeight="35"/>
             <RowDefinition Height="*"/>
@@ -118,7 +113,7 @@
                 </StackPanel>
             </SplitView.Pane>
         </SplitView>
-        
+
         <!-- 검색 메뉴 -->
         <SplitView Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right"
                    DisplayMode="CompactOverlay" 
@@ -155,5 +150,59 @@
                 </StackPanel>
             </SplitView.Pane>
         </SplitView>
+
+        <!--
+        우측 마우스 클릭시 하단에 보조 메뉴들이 나타난다
+        -->
+        <Grid Grid.Row="1" Visibility="{Binding IsOpenBottomMenu, Converter={StaticResource BoolToVisibilityConverter}}"
+              VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Height="70"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal"
+                        Background="{StaticResource stateColor}">
+                <StackPanel.Children>
+                    <!-- 현재 선택된 노드의 썸네일 -->
+                    <Image Source="{Binding RightTappedNode.DefaultThumbnail}" 
+                           VerticalAlignment="Top"
+                           Height="60" Margin="45 5 0 0"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding RightTappedNode.Title}" Margin="8 5 0 0" 
+                                   FontSize="14" Foreground="WhiteSmoke"/>
+                        <TextBlock FontSize="10" Foreground="LightGray" Margin="8 3 0 0">
+                            <Run Text="주소 ("/>
+                            <Run Text="{Binding RightTappedNode.VideoUrl}"/>
+                            <Run Text=")"/>
+                        </TextBlock>
+                        <TextBlock FontSize="10" Foreground="LightGray" Margin="8 3 0 0">
+                            <Run Text="게시일 ("/>
+                            <Run Text="{Binding RightTappedNode.PublishedAt}"/>
+                            <Run Text=")"/>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel.Children>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Height="70"
+                        VerticalAlignment="Bottom"
+                        Orientation="Horizontal" FlowDirection="RightToLeft"
+                        Background="{StaticResource stateColor}">
+                <StackPanel.Children>
+                    <Button Background="Transparent">
+                        <Button.Content>
+                            <StackPanel>
+                                <Image Source="ms-appx:///Resources/music.png" 
+                                       Height="35"/>
+                                <TextBlock Text="재생" Margin="0 5 0 0"
+                                           HorizontalAlignment="Center"
+                                           Foreground="WhiteSmoke" FontSize="10"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel.Children>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

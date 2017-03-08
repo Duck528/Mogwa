@@ -13,11 +13,8 @@
     mc:Ignorable="d">
     <UserControl.Resources>
         <SolidColorBrush x:Key="stateColor">#EB3232</SolidColorBrush>
-        <MenuFlyout x:Key="contextMenu">
-            <MenuFlyoutItem Text="음악 다운로드"/>
-            <MenuFlyoutItem Text="비디오 다운로드"/>
-            <MenuFlyoutItem Text="관심목록 추가"/>
-        </MenuFlyout>
+        <SolidColorBrush x:Key="optionColor">#B93C3C</SolidColorBrush>
+
     </UserControl.Resources>
 
     <Grid>
@@ -25,6 +22,11 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
+        <!--
+        상단 검색 결과 메뉴
+        추후에 필터링 할 수 있는 버튼을 추가하자
+        -->
         <StackPanel Orientation="Horizontal">
             <TextBlock FontSize="18" VerticalAlignment="Center" Margin="5 0 0 0" Foreground="{StaticResource stateColor}">
                 <Run Text="검색결과"/>
@@ -33,6 +35,9 @@
                 <Run Text=")" FontSize="14"/>
             </TextBlock>
         </StackPanel>
+        <!--
+        Youtube Data API V3을 이용한 결과를 뿌려주는 부분
+        -->
         <ListView ItemsSource="{Binding YoutubeSearchResults}"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   ScrollViewer.VerticalScrollMode="Disabled"
@@ -42,12 +47,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel x:Name="searchResultNode" Orientation="Horizontal" 
-                                Height="70" Width="600"
-                                FlyoutBase.AttachedFlyout="{StaticResource contextMenu}">
+                                Height="70" Width="600">
                         <Interactivity:Interaction.Behaviors>
                             <interactcore:EventTriggerBehavior EventName="RightTapped">
                                 <interactcore:InvokeCommandAction 
-                                    Command="{Binding Path=DataContext.DoOpenFlyoutMenu, ElementName=searchResultControl}"
+                                    Command="{Binding Path=DataContext.DoRightTapdSearchedNode, ElementName=searchResultControl}"
                                     CommandParameter="{Binding ElementName=searchResultNode}"/>
                             </interactcore:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>

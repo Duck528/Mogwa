@@ -6,7 +6,7 @@
   <Roots.PropertyPathNames>
     <RootPropertyPathName Name="YoutubeSearchResults" />
     <RootPropertyPathName Name="DataContext" />
-    <RootPropertyPathName Name="DoOpenFlyoutMenu" />
+    <RootPropertyPathName Name="DoRightTapdSearchedNode" />
     <RootPropertyPathName Name="ChannelId" />
     <RootPropertyPathName Name="PublishedAt" />
     <RootPropertyPathName Name="Title" />
@@ -15,6 +15,9 @@
     <RootPropertyPathName Name="Album" />
     <RootPropertyPathName Name="Singer" />
     <RootPropertyPathName Name="imgPath" />
+    <RootPropertyPathName Name="IsOpenBottomMenu" />
+    <RootPropertyPathName Name="RightTappedNode" />
+    <RootPropertyPathName Name="VideoUrl" />
     <RootPropertyPathName Name="IsSearchOpened" />
     <RootPropertyPathName Name="DoYoutubeSearch" />
     <RootPropertyPathName Name="SearchKeyWord" />
@@ -39,6 +42,8 @@
       <RootProperty Name="RowDefinitions" />
       <RootProperty Name="Background" />
       <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="VerticalAlignment" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
       <RootMethod Name="GetColumnSpan" />
@@ -69,6 +74,7 @@
       <RootProperty Name="Height" />
       <RootProperty Name="Width" />
       <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Background" />
       <RootProperty Name="FlowDirection" />
     </RootType>
@@ -83,12 +89,6 @@
     </RootType>
     <RootType FullName="Mogwa.Controls.SearchControl" />
     <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush" />
-    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout">
-      <RootProperty Name="Items" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutItem">
-      <RootProperty Name="Text" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="ItemsSource" />
       <RootProperty Name="ItemTemplate" />
@@ -107,22 +107,17 @@
     <RootType FullName="Windows.UI.Xaml.Data.Binding">
       <RootProperty Name="Path" />
       <RootProperty Name="ElementName" />
+      <RootProperty Name="Converter" />
       <RootProperty Name="UpdateSourceTrigger" />
       <RootProperty Name="Mode" />
-      <RootProperty Name="Converter" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.FlyoutBase">
-      <RootMethod Name="GetAttachedFlyout" />
-      <RootMethod Name="SetAttachedFlyout" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Interactivity.Interaction">
       <RootMethod Name="GetBehaviors" />
       <RootMethod Name="SetBehaviors" />
     </RootType>
-    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Microsoft.Xaml.Interactions.Core.EventTriggerBehavior">
       <RootProperty Name="EventName" />
       <RootProperty Name="Actions" />
@@ -135,6 +130,8 @@
       <RootProperty Name="Source" />
       <RootProperty Name="Width" />
       <RootProperty Name="Height" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="HorizontalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Documents.Run">
@@ -147,6 +144,7 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ItemsWrapGrid">
       <RootProperty Name="Orientation" />
     </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Mogwa.Controls.SearchResultControl">
       <RootProperty Name="Margin" />
       <RootProperty Name="Visibility" />
@@ -159,6 +157,7 @@
     </RootType>
     <RootType FullName="Mogwa.Controls.Tile" />
     <RootType FullName="Mogwa.Converters.BoolToVisibilityConverter" />
+    <RootType FullName="System.Double" />
     <RootType FullName="Windows.UI.Xaml.Controls.SplitView">
       <RootProperty Name="DisplayMode" />
       <RootProperty Name="IsPaneOpen" />
@@ -169,22 +168,22 @@
       <RootProperty Name="FlowDirection" />
       <RootProperty Name="Background" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
-      <RootProperty Name="HorizontalAlignment" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
+      <RootProperty Name="Width" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="Background" />
+      <RootProperty Name="Content" />
       <RootProperty Name="Command" />
       <RootProperty Name="Height" />
       <RootProperty Name="FontSize" />
-      <RootProperty Name="Content" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="Margin" />
       <RootProperty Name="Width" />
       <RootProperty Name="Visibility" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
-      <RootProperty Name="Width" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
+      <RootProperty Name="HorizontalAlignment" />
     </RootType>
     <RootType FullName="Mogwa.Views.MainView" />
   </Roots.RootTypes>
