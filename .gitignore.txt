@@ -287,5 +287,6 @@ Bin/
 bin/
 obj/
 Setup
-.vs/Mogwa/v15/.suo
 .vs/
+Mogwa/Mogwa.csproj.user
+Mogwa/obj/
