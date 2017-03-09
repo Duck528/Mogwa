@@ -288,3 +288,4 @@ bin/
 obj/
 Setup
 .vs/Mogwa/v15/.suo
+.vs/
