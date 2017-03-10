@@ -214,12 +214,21 @@ namespace Mogwa.ViewModels
             {
                 if (this.rightTabppedNode != value)
                 {
+                    // 새로운 노드로 교체하기 전에 IsSelected 프로퍼티를 false로 변경한다
+                    if (this.rightTabppedNode != null)
+                    {
+                        this.rightTabppedNode.IsSelected = false;
+                    }
                     this.rightTabppedNode = value;
                     this.RaisePropertyChanged("RightTappedNode");
                 }
             }
         }
-
+        
+        /// <summary>
+        /// 탐색된 유튜브 검색 결과를 우클릭한 경우 실행된다
+        /// 우클릭된 노드를 RightTappedNode에 바인딩한다
+        /// </summary>
         private ICommand doRightTapdSearchedNode = null;
         public ICommand DoRightTapdSearchedNode
         {
@@ -232,19 +241,22 @@ namespace Mogwa.ViewModels
                         var uiElem = sender as FrameworkElement;
                         if (uiElem != null)
                         {
-                            // 선택된 노드가 있는 경우엔 Right Tap된 노드를 선택된 노드로 지정한다
-                            this.RightTappedNode = uiElem.DataContext as YoutubeNode;
-                            if (this.IsOpenBottomMenu == false)
+                            var youtubeNode = uiElem.DataContext as YoutubeNode;
+                            if (youtubeNode != null)
                             {
+                                // 기존에 선택되어있던 노드에서 새롭게 선택된 노드로 변경한다
+                                this.RightTappedNode = youtubeNode;
+                                // 감춰져있던 아래 메뉴를 위로 올라오게 한다
                                 this.IsOpenBottomMenu = true;
+                                // 선택되었음을 프로퍼티에 저장한다
+                                this.RightTappedNode.IsSelected = true;
+                            }
+                            else
+                            {
+                                // 선택된 노드가 없는 경우에 위로 올라온 하단 메뉴를 아래로 가게한다
+                                this.IsOpenBottomMenu = false;
                             }
                         }
-                        else
-                        {
-                            // 선택된 노드가 없는 경우엔 BottomMenu를 토글링한다
-                            this.IsOpenBottomMenu = !this.IsOpenBottomMenu;
-                        }
-                        
                     });
                 }
                 return this.doRightTapdSearchedNode;
@@ -253,20 +265,52 @@ namespace Mogwa.ViewModels
         #endregion
 
         #region MenuCommands
-        private ObservableCollection<DownloadViewModel> downloadList = null;
-        public ObservableCollection<DownloadViewModel> DownloadList
+        /// <summary>
+        /// 다운로드가 모두 완료된 노드 정보를 저장한다
+        /// </summary>
+        private ObservableCollection<DownloadViewModel> downloadedList = null;
+        public ObservableCollection<DownloadViewModel> DownloadedList
         {
             get
             {
-                if (this.downloadList == null)
+                if (this.downloadedList == null)
                 {
-                    this.downloadList = new ObservableCollection<DownloadViewModel>();
+                    this.downloadedList = new ObservableCollection<DownloadViewModel>();
                 }
-                return this.downloadList;
+                return this.downloadedList;
             }
-            set { this.downloadList = value; }
+            set { this.downloadedList = value; }
         }
 
+        /// <summary>
+        /// 현재 다운로드가 진행중인 노드
+        /// 다운로드가 완료되면 null로 변환한다
+        /// </summary>
+        private DownloadViewModel downloadingNode = null;
+        public DownloadViewModel DownloadingNode
+        {
+            get
+            {
+                if (this.downloadingNode == null)
+                {
+                    this.downloadingNode = new DownloadViewModel();
+                }
+                return this.downloadingNode;
+            }
+            set
+            {
+                if (this.downloadingNode != value)
+                {
+                    this.downloadingNode = value;
+                    this.RaisePropertyChanged("DownloadingNode");
+                }
+            }
+        }
+       
+
+        /// <summary>
+        /// 선택한 유튜브 영상의 비디오를 다운로드한다
+        /// </summary>
         private ICommand doVideoDownload = null;
         public ICommand DoVideoDownload
         {
@@ -285,8 +329,8 @@ namespace Mogwa.ViewModels
                                 ThumbnailUrl = this.RightTappedNode.DefaultThumbnail,
                                 Type = ContentsType.MP4
                             };
+                            this.DownloadingNode = downloadViewModel;
                             downloadViewModel.BeginDownload();
-                            this.DownloadList.Add(downloadViewModel);
                         }
                     });
                 }

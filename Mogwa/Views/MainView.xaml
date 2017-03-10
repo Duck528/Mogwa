@@ -16,7 +16,9 @@
 
         <!-- 컨버터 정의 -->
         <c:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-        <x:Double x:Key="AppBarThemeCompactHeight">80</x:Double>
+        <c:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        <c:FloatToIntConverter x:Key="FloatToIntConverter"/>
+        <c:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
 
         <!-- 스타일 정의 -->
     </Page.Resources>
@@ -33,7 +35,7 @@
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
                     Background="{StaticResource stateColor}">
@@ -58,12 +60,29 @@
                     </Button>
                 </StackPanel.Children>
             </StackPanel>
-            <!-- 검색 버튼 -->
-            <Button Grid.Column="1" Command="{Binding ToggleSearch}" Width="45" Height="40" Background="Transparent">
-                <Button.Content>
-                    <Image Source="ms-appx:///Resources/search.png"/>
-                </Button.Content>
-            </Button>
+            
+            <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+                <!-- 검색 버튼 -->
+                <Button Command="{Binding ToggleSearch}" Width="45" Height="40" Background="Transparent">
+                    <Button.Content>
+                        <Image Source="ms-appx:///Resources/search.png"/>
+                    </Button.Content>
+                </Button>
+                
+                <!--
+                현재 다운로드 되고 있는 상태를 나타낸다.
+                타이틀 (%) 로 표시한다
+                -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="11" Margin="5 0 0 0"
+                               VerticalAlignment="Center"
+                               Visibility="{Binding RightTappedNode.IsDownProgress, Converter={StaticResource BoolToVisibilityConverter}}"
+                               Foreground="WhiteSmoke">
+                        <Run Text="{Binding DownloadingNode.Title}"/>
+                        <Run Text="{Binding DownloadingNode.Status}"/>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
         </Grid>
 
         <!-- 컨텐츠 패널 -->
@@ -190,10 +209,11 @@
                         Orientation="Horizontal" FlowDirection="RightToLeft"
                         Background="{StaticResource stateColor}">
                 <StackPanel.Children>
-                    <Button Background="Transparent">
+                    <!-- 재생 버튼 -->
+                    <Button Background="Transparent" Margin="30 0 0 0">
                         <Button.Content>
                             <StackPanel>
-                                <Image Source="ms-appx:///Resources/music.png" 
+                                <Image Source="ms-appx:///Resources/play.png" 
                                        Height="35"/>
                                 <TextBlock Text="재생" Margin="0 5 0 0"
                                            HorizontalAlignment="Center"
@@ -201,6 +221,21 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
+                    
+                    <!-- 다운로드 버튼 -->
+                    <Button Command="{Binding DoVideoDownload}" Background="Transparent">
+                        <Button.Content>
+                            <StackPanel>
+                                <Image Source="ms-appx:///Resources/down.png" 
+                                       Height="35"/>
+                                <TextBlock Text="다운로드" Margin="0 5 0 0"
+                                           HorizontalAlignment="Center"
+                                           Foreground="WhiteSmoke" FontSize="10"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    
+
                 </StackPanel.Children>
             </StackPanel>
         </Grid>

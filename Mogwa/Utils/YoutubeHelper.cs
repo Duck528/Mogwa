@@ -1,4 +1,5 @@
-﻿using Google.Apis.Services;
+﻿using GalaSoft.MvvmLight;
+using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using YoutubeExtractor;
 
 namespace Mogwa.Utils
 {
-    public class YoutubeNode
+    public class YoutubeNode : ObservableObject
     {
         public string Title { get; set; } = "";
         public string DefaultThumbnail { get; set; } = "";
@@ -22,6 +23,23 @@ namespace Mogwa.Utils
         public string ChannelId { get; set; } = "";
         public string PublishedAt { get; set; } = "";
         private string videoUrl = "";
+
+        /// <summary>
+        /// 선택이 된 경우 true, 선택이 되지 않은 경우 false
+        /// </summary>
+        private bool isSelected = false;
+        public bool IsSelected
+        {
+            get { return this.isSelected; }
+            set
+            {
+                if (this.isSelected != value)
+                {
+                    this.isSelected = value;
+                    this.RaisePropertyChanged("IsSelected");
+                }
+            }
+        }
         public string VideoUrl
         {
             get { return this.videoUrl; }
@@ -66,7 +84,7 @@ namespace Mogwa.Utils
                         DefaultThumbnail = resultItem.Snippet.Thumbnails.Default__.Url,
                         MediumThumbnail = resultItem.Snippet.Thumbnails.Medium.Url,
                         LargeThumbnail = resultItem.Snippet.Thumbnails.High.Url,
-                        VideoUrl = "https://www.youtube.com/watch?v=" + resultItem.Id.VideoId
+                        VideoUrl = "https://www.youtube.com/v/" + resultItem.Id.VideoId
                     });
                 }
                 return nodes;

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Networking.BackgroundTransfer;
 using Windows.Storage;
+using Windows.UI.Popups;
 using YoutubeExtractor;
 
 namespace Mogwa.Models
@@ -97,54 +98,119 @@ namespace Mogwa.Models
             }
         }
 
-        public ContentsType Type { get; set; }
-
-        public async void BeginDownload()
+        /// <summary>
+        /// 다운로드가 완료 되었는지 상태를 나타낸다
+        /// </summary>
+        private bool isDownCompleted = false;
+        public bool IsDownCompleted
         {
-            IEnumerable<VideoInfo> videoInfos = 
-                DownloadUrlResolver.GetDownloadUrls(this.DownloadUrl);
-            if (videoInfos != null)
+            get { return this.isDownCompleted; }
+            set
             {
-                switch (this.Type)
+                if (this.isDownCompleted != value)
                 {
-                    case ContentsType.Audio:
-                        {
-                            break;
-                        }
-                    case ContentsType.MP4:
-                        {
-                            VideoInfo videoInfo = videoInfos.First(infor => infor.VideoType == VideoType.Mp4);
-                            if (videoInfo.RequiresDecryption == true)
-                            {
-                                DownloadUrlResolver.DecryptDownloadUrl(videoInfo);
-                            }
-
-                            var bgDownloader = new BackgroundDownloader();
-                            StorageFolder saveDir = KnownFolders.MusicLibrary;
-                            var part = await saveDir.CreateFileAsync(
-                                videoInfo.Title + videoInfo.VideoExtension, CreationCollisionOption.ReplaceExisting);
-                            var operation = bgDownloader.CreateDownload(new Uri(videoInfo.DownloadUrl), part);
-
-                            await this.DoDownloadAsync(operation);
-                            break;
-                        }
+                    this.isDownCompleted = value;
+                    this.RaisePropertyChanged("IsDownCompleted");
                 }
             }
         }
 
+        /// <summary>
+        /// 현재 다운로드가 진행중인지 나타낸다
+        /// </summary>
+        private bool isDownProgress = false;
+        public bool IsDownProgress
+        {
+            get { return this.isDownProgress; }
+            set
+            {
+                if (this.isDownProgress != value)
+                {
+                    this.isDownProgress = value;
+                    this.RaisePropertyChanged("IsDownProgress");
+                }
+            }
+        }
+
+        public ContentsType Type { get; set; }
+
+        /// <summary>
+        /// 비동기로 다운로드를 시작한다
+        /// </summary>
+        public async void BeginDownload()
+        {
+            try
+            {
+                this.Status = "다운로드 시도";
+                IEnumerable<VideoInfo> videoInfos = await DownloadUrlResolver.GetDownloadUrlsAsync(this.DownloadUrl);
+
+                if (videoInfos != null)
+                {
+                    switch (this.Type)
+                    {
+                        case ContentsType.Audio:
+                            {
+                                break;
+                            }
+                        case ContentsType.MP4:
+                            {
+                                IEnumerable<VideoInfo> mp4Videos = videoInfos.Where(infor => infor.VideoType == VideoType.Mp4);
+                                
+                                foreach (var v in mp4Videos)
+                                {
+                                    if (v.RequiresDecryption == true)
+                                    {
+                                        DownloadUrlResolver.DecryptDownloadUrl(v);
+                                    }
+
+                                    var bgDownloader = new BackgroundDownloader();
+                                    StorageFolder saveDir = KnownFolders.VideosLibrary;
+                                    var part = await saveDir.CreateFileAsync(
+                                        v.Title + v.VideoExtension, CreationCollisionOption.ReplaceExisting);
+                                    var operation = bgDownloader.CreateDownload(new Uri(v.DownloadUrl), part);
+
+                                    await this.DoDownloadAsync(operation);
+                                    break;
+                                }
+                                break;
+                            }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                this.Status = "다운로드 실패";
+                var dialog = new MessageDialog(e.Message);
+                await dialog.ShowAsync();
+            }
+        }
+
+        /// <summary>
+        /// 비동기로 다운로드를 진행하며 그 와 같이 진행할 콜백도 정한다
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
         private async Task DoDownloadAsync(DownloadOperation operation)
         {
             var callback = new Progress<DownloadOperation>(DownloadCallback);
             await operation.StartAsync().AsTask(callback);
         }
 
+        /// <summary>
+        /// 다운로드가 시작되면 같이 진행되는 콜백 함수로
+        /// 다운로드의 상태와 다운로드가 얼마나 진행되었는지를 나타내는데 사용된다
+        /// </summary>
+        /// <param name="operation"></param>
         private void DownloadCallback(DownloadOperation operation)
         {
-            this.Status = "다운로드 중";
             this.Percentage = ((double)operation.Progress.BytesReceived / operation.Progress.TotalBytesToReceive) * 100;
+            this.Status = $"다운로드 중 ({(int)this.Percentage}%)";
+            this.IsDownProgress = true;
             if (this.Percentage >= 100)
             {
                 this.Status = "다운로드 완료";
+                this.IsDownCompleted = true;
+                this.IsDownProgress = false;
             }
         }
     }
